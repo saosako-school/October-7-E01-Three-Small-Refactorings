@@ -19,8 +19,8 @@
     const canvas = document.querySelector("#board");
     const ctx = canvas.getContext("2d");
     const layouts = [
-      { label: "Row", positions: [[55, 80], [175, 80], [295, 80]], colors: ["#e6a23c", "#6555aa", "#248a87"] },
-      { label: "Stack", positions: [[135, 55], [175, 80], [215, 105]], colors: ["#248a87", "#e6a23c", "#6555aa"] },
+      { label: "Row", tileRecords: [[55, 80, "#e6a23c"], [175, 80, "#6555aa"], [295, 80, "#248a87"]] },
+      { label: "Stack", tileRecords: [[135, 55, "#248a87"], [175, 80, "#e6a23c"], [215, 105, "#6555aa"]] },
     ];
     let layoutIndex = 0;
     const options = { experimentalShadows: false };
@@ -34,8 +34,8 @@
       const layout = layouts[layoutIndex];
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       document.querySelector("#arrangement").textContent = `Arrangement: ${layout.label}`;
-      layout.positions.forEach(([x, y], index) => {
-        drawTile(x, y, layout.colors[index]);
+      layout.tileRecords.forEach(([x, y, color]) => {
+        drawTile(x, y, color);
       });
       // If options.experimentalShadows, try drawing a fancy second pass later.
       // ctx.shadowBlur = 12;
